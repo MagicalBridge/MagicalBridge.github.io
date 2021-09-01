@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Vue-Router 源码解析 | 褚鹏飞的博客</title>
+    <meta name="generator" content="VuePress 1.8.2">
+    
+    <meta name="description" content="终于等到你">
+    
+    <link rel="preload" href="/assets/css/0.styles.35bcedcf.css" as="style"><link rel="preload" href="/assets/js/app.1961f682.js" as="script"><link rel="preload" href="/assets/js/2.6ae9b001.js" as="script"><link rel="preload" href="/assets/js/88.8f14e44b.js" as="script"><link rel="prefetch" href="/assets/js/10.c6e6d158.js"><link rel="prefetch" href="/assets/js/11.e56f581b.js"><link rel="prefetch" href="/assets/js/12.00daf523.js"><link rel="prefetch" href="/assets/js/13.37c31ba6.js"><link rel="prefetch" href="/assets/js/14.9b338106.js"><link rel="prefetch" href="/assets/js/15.dedb044e.js"><link rel="prefetch" href="/assets/js/16.a2f5e744.js"><link rel="prefetch" href="/assets/js/17.5f80c2b9.js"><link rel="prefetch" href="/assets/js/18.3789bfac.js"><link rel="prefetch" href="/assets/js/19.d7296398.js"><link rel="prefetch" href="/assets/js/20.2cf83cde.js"><link rel="prefetch" href="/assets/js/21.c8e0df16.js"><link rel="prefetch" href="/assets/js/22.c68e8d7d.js"><link rel="prefetch" href="/assets/js/23.1f6bec21.js"><link rel="prefetch" href="/assets/js/24.b19a8f4d.js"><link rel="prefetch" href="/assets/js/25.8ca720f0.js"><link rel="prefetch" href="/assets/js/26.5271fb74.js"><link rel="prefetch" href="/assets/js/27.8c225dc8.js"><link rel="prefetch" href="/assets/js/28.b8ae4e0b.js"><link rel="prefetch" href="/assets/js/29.7cf7a3d9.js"><link rel="prefetch" href="/assets/js/3.189210f0.js"><link rel="prefetch" href="/assets/js/30.3fc28574.js"><link rel="prefetch" href="/assets/js/31.401cc8ec.js"><link rel="prefetch" href="/assets/js/32.26fec71a.js"><link rel="prefetch" href="/assets/js/33.fc9c2e42.js"><link rel="prefetch" href="/assets/js/34.9eab4307.js"><link rel="prefetch" href="/assets/js/35.2d455dd0.js"><link rel="prefetch" href="/assets/js/36.d4f23560.js"><link rel="prefetch" href="/assets/js/37.2e1de6c3.js"><link rel="prefetch" href="/assets/js/38.8c53fa14.js"><link rel="prefetch" href="/assets/js/39.0588b7ab.js"><link rel="prefetch" href="/assets/js/4.6d86ad37.js"><link rel="prefetch" href="/assets/js/40.3fc1fd98.js"><link rel="prefetch" href="/assets/js/41.065b9def.js"><link rel="prefetch" href="/assets/js/42.a212565d.js"><link rel="prefetch" href="/assets/js/43.0baac82a.js"><link rel="prefetch" href="/assets/js/44.053873b7.js"><link rel="prefetch" href="/assets/js/45.5fd823ab.js"><link rel="prefetch" href="/assets/js/46.ee4cf263.js"><link rel="prefetch" href="/assets/js/47.5a6dfba4.js"><link rel="prefetch" href="/assets/js/48.d04a4c01.js"><link rel="prefetch" href="/assets/js/49.05009825.js"><link rel="prefetch" href="/assets/js/5.cf6cdadb.js"><link rel="prefetch" href="/assets/js/50.325b2f36.js"><link rel="prefetch" href="/assets/js/51.a5ba819e.js"><link rel="prefetch" href="/assets/js/52.4c6dd146.js"><link rel="prefetch" href="/assets/js/53.90f2dda3.js"><link rel="prefetch" href="/assets/js/54.12b051b7.js"><link rel="prefetch" href="/assets/js/55.bd741d98.js"><link rel="prefetch" href="/assets/js/56.1b92068c.js"><link rel="prefetch" href="/assets/js/57.5e6be4c9.js"><link rel="prefetch" href="/assets/js/58.f7b1ac7b.js"><link rel="prefetch" href="/assets/js/59.d1390a21.js"><link rel="prefetch" href="/assets/js/6.f5bf7df3.js"><link rel="prefetch" href="/assets/js/60.5535cef3.js"><link rel="prefetch" href="/assets/js/61.42bee825.js"><link rel="prefetch" href="/assets/js/62.5b867401.js"><link rel="prefetch" href="/assets/js/63.fe8e35a5.js"><link rel="prefetch" href="/assets/js/64.02914b0e.js"><link rel="prefetch" href="/assets/js/65.e034b6f4.js"><link rel="prefetch" href="/assets/js/66.9e877d99.js"><link rel="prefetch" href="/assets/js/67.725c62c4.js"><link rel="prefetch" href="/assets/js/68.16d24015.js"><link rel="prefetch" href="/assets/js/69.1acdf976.js"><link rel="prefetch" href="/assets/js/7.5bba76dc.js"><link rel="prefetch" href="/assets/js/70.c86d49e6.js"><link rel="prefetch" href="/assets/js/71.444325ea.js"><link rel="prefetch" href="/assets/js/72.eb006388.js"><link rel="prefetch" href="/assets/js/73.5e77cc1f.js"><link rel="prefetch" href="/assets/js/74.9e2eeaf7.js"><link rel="prefetch" href="/assets/js/75.ea07f129.js"><link rel="prefetch" href="/assets/js/76.c4da31f3.js"><link rel="prefetch" href="/assets/js/77.72762994.js"><link rel="prefetch" href="/assets/js/78.cd72e138.js"><link rel="prefetch" href="/assets/js/79.3b12be2d.js"><link rel="prefetch" href="/assets/js/8.26b3bcd2.js"><link rel="prefetch" href="/assets/js/80.8c302926.js"><link rel="prefetch" href="/assets/js/81.185b6109.js"><link rel="prefetch" href="/assets/js/82.74172d98.js"><link rel="prefetch" href="/assets/js/83.1848b04a.js"><link rel="prefetch" href="/assets/js/84.06e3917e.js"><link rel="prefetch" href="/assets/js/85.4f72d0a5.js"><link rel="prefetch" href="/assets/js/86.ce11195f.js"><link rel="prefetch" href="/assets/js/87.849bec07.js"><link rel="prefetch" href="/assets/js/89.1fa2e1e4.js"><link rel="prefetch" href="/assets/js/9.bc59784d.js"><link rel="prefetch" href="/assets/js/90.a86b9a83.js"><link rel="prefetch" href="/assets/js/91.e8dd9665.js"><link rel="prefetch" href="/assets/js/92.5ac28219.js">
+    <link rel="stylesheet" href="/assets/css/0.styles.35bcedcf.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/" class="home-link router-link-active"><!----> <span class="site-name">褚鹏飞的博客</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="算法" class="dropdown-title"><span class="title">算法</span> <span class="arrow down"></span></button> <button type="button" aria-label="算法" class="mobile-dropdown-title"><span class="title">算法</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/algorithms/" class="nav-link">
+  常用算法
+</a></li><li class="dropdown-item"><!----> <a href="/leetCode/leetCode/" class="nav-link">
+  leetCode算题解
+</a></li><li class="dropdown-item"><!----> <a href="/leetCode/niuke/" class="nav-link">
+  牛客算题解
+</a></li><li class="dropdown-item"><!----> <a href="/leetCode/valuableBook/" class="nav-link">
+  面试题
+</a></li><li class="dropdown-item"><!----> <a href="/leetCode/offer/" class="nav-link">
+  剑指offer
+</a></li></ul></div></div><div class="nav-item"><a href="/dataStructure/" class="nav-link">
+  数据结构
+</a></div><div class="nav-item"><a href="/network/" class="nav-link">
+  计算机网络
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="Vue" class="dropdown-title"><span class="title">Vue</span> <span class="arrow down"></span></button> <button type="button" aria-label="Vue" class="mobile-dropdown-title"><span class="title">Vue</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/vue/vue-analysis/" class="nav-link">
+  Vue2内部原理剖析
+</a></li><li class="dropdown-item"><!----> <a href="/vue/vue3-analysis/" class="nav-link">
+  Vue3内部原理剖析
+</a></li><li class="dropdown-item"><!----> <a href="/vue/vue-component/" class="nav-link">
+  Vue组件探索
+</a></li><li class="dropdown-item"><!----> <a href="/vue/vuex/" class="nav-link">
+  Vuex源码解析
+</a></li><li class="dropdown-item"><!----> <a href="/vue/vue-router/" aria-current="page" class="nav-link router-link-exact-active router-link-active">
+  Vue-Router源码解析
+</a></li></ul></div></div><div class="nav-item"><a href="/react/" class="nav-link">
+  React
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="webpack" class="dropdown-title"><span class="title">webpack</span> <span class="arrow down"></span></button> <button type="button" aria-label="webpack" class="mobile-dropdown-title"><span class="title">webpack</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/webpack/webpack-base.html" class="nav-link">
+  webpack基础
+</a></li><li class="dropdown-item"><!----> <a href="/webpack/webpack-advance.html" class="nav-link">
+  webpack进阶
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="Node.js" class="dropdown-title"><span class="title">Node.js</span> <span class="arrow down"></span></button> <button type="button" aria-label="Node.js" class="mobile-dropdown-title"><span class="title">Node.js</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/node/node-base/" class="nav-link">
+  Node基础
+</a></li><li class="dropdown-item"><!----> <a href="/node/express/" class="nav-link">
+  Express
+</a></li><li class="dropdown-item"><!----> <a href="/node/koa/" class="nav-link">
+  Koa
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="服务端" class="dropdown-title"><span class="title">服务端</span> <span class="arrow down"></span></button> <button type="button" aria-label="服务端" class="mobile-dropdown-title"><span class="title">服务端</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/linux/" class="nav-link">
+  linux
+</a></li><li class="dropdown-item"><!----> <a href="/git/" class="nav-link">
+  git工具
+</a></li><li class="dropdown-item"><!----> <a href="/nginx/nginx-base/" class="nav-link">
+  nginx
+</a></li><li class="dropdown-item"><!----> <a href="/docker/" class="nav-link">
+  docker
+</a></li><li class="dropdown-item"><!----> <a href="/k8s/" class="nav-link">
+  kubernetes
+</a></li><li class="dropdown-item"><!----> <a href="/database/mysql/" class="nav-link">
+  mySql
+</a></li><li class="dropdown-item"><!----> <a href="/database/mongodb/" class="nav-link">
+  mongodb
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="前端三剑客" class="dropdown-title"><span class="title">前端三剑客</span> <span class="arrow down"></span></button> <button type="button" aria-label="前端三剑客" class="mobile-dropdown-title"><span class="title">前端三剑客</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/threemusketeers/javascript/" class="nav-link">
+  javascript
+</a></li><li class="dropdown-item"><!----> <a href="/threemusketeers/html/" class="nav-link">
+  HTML
+</a></li><li class="dropdown-item"><!----> <a href="/threemusketeers/css/" class="nav-link">
+  css
+</a></li></ul></div></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="算法" class="dropdown-title"><span class="title">算法</span> <span class="arrow down"></span></button> <button type="button" aria-label="算法" class="mobile-dropdown-title"><span class="title">算法</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/algorithms/" class="nav-link">
+  常用算法
+</a></li><li class="dropdown-item"><!----> <a href="/leetCode/leetCode/" class="nav-link">
+  leetCode算题解
+</a></li><li class="dropdown-item"><!----> <a href="/leetCode/niuke/" class="nav-link">
+  牛客算题解
+</a></li><li class="dropdown-item"><!----> <a href="/leetCode/valuableBook/" class="nav-link">
+  面试题
+</a></li><li class="dropdown-item"><!----> <a href="/leetCode/offer/" class="nav-link">
+  剑指offer
+</a></li></ul></div></div><div class="nav-item"><a href="/dataStructure/" class="nav-link">
+  数据结构
+</a></div><div class="nav-item"><a href="/network/" class="nav-link">
+  计算机网络
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="Vue" class="dropdown-title"><span class="title">Vue</span> <span class="arrow down"></span></button> <button type="button" aria-label="Vue" class="mobile-dropdown-title"><span class="title">Vue</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/vue/vue-analysis/" class="nav-link">
+  Vue2内部原理剖析
+</a></li><li class="dropdown-item"><!----> <a href="/vue/vue3-analysis/" class="nav-link">
+  Vue3内部原理剖析
+</a></li><li class="dropdown-item"><!----> <a href="/vue/vue-component/" class="nav-link">
+  Vue组件探索
+</a></li><li class="dropdown-item"><!----> <a href="/vue/vuex/" class="nav-link">
+  Vuex源码解析
+</a></li><li class="dropdown-item"><!----> <a href="/vue/vue-router/" aria-current="page" class="nav-link router-link-exact-active router-link-active">
+  Vue-Router源码解析
+</a></li></ul></div></div><div class="nav-item"><a href="/react/" class="nav-link">
+  React
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="webpack" class="dropdown-title"><span class="title">webpack</span> <span class="arrow down"></span></button> <button type="button" aria-label="webpack" class="mobile-dropdown-title"><span class="title">webpack</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/webpack/webpack-base.html" class="nav-link">
+  webpack基础
+</a></li><li class="dropdown-item"><!----> <a href="/webpack/webpack-advance.html" class="nav-link">
+  webpack进阶
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="Node.js" class="dropdown-title"><span class="title">Node.js</span> <span class="arrow down"></span></button> <button type="button" aria-label="Node.js" class="mobile-dropdown-title"><span class="title">Node.js</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/node/node-base/" class="nav-link">
+  Node基础
+</a></li><li class="dropdown-item"><!----> <a href="/node/express/" class="nav-link">
+  Express
+</a></li><li class="dropdown-item"><!----> <a href="/node/koa/" class="nav-link">
+  Koa
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="服务端" class="dropdown-title"><span class="title">服务端</span> <span class="arrow down"></span></button> <button type="button" aria-label="服务端" class="mobile-dropdown-title"><span class="title">服务端</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/linux/" class="nav-link">
+  linux
+</a></li><li class="dropdown-item"><!----> <a href="/git/" class="nav-link">
+  git工具
+</a></li><li class="dropdown-item"><!----> <a href="/nginx/nginx-base/" class="nav-link">
+  nginx
+</a></li><li class="dropdown-item"><!----> <a href="/docker/" class="nav-link">
+  docker
+</a></li><li class="dropdown-item"><!----> <a href="/k8s/" class="nav-link">
+  kubernetes
+</a></li><li class="dropdown-item"><!----> <a href="/database/mysql/" class="nav-link">
+  mySql
+</a></li><li class="dropdown-item"><!----> <a href="/database/mongodb/" class="nav-link">
+  mongodb
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="前端三剑客" class="dropdown-title"><span class="title">前端三剑客</span> <span class="arrow down"></span></button> <button type="button" aria-label="前端三剑客" class="mobile-dropdown-title"><span class="title">前端三剑客</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/threemusketeers/javascript/" class="nav-link">
+  javascript
+</a></li><li class="dropdown-item"><!----> <a href="/threemusketeers/html/" class="nav-link">
+  HTML
+</a></li><li class="dropdown-item"><!----> <a href="/threemusketeers/css/" class="nav-link">
+  css
+</a></li></ul></div></div> <!----></nav>  <ul class="sidebar-links"><li><section class="sidebar-group depth-0"><p class="sidebar-heading open"><span>Vue-Router 源码解析</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/vue/vue-router/#vue-router" class="sidebar-link">Vue-Router</a><ul class="sidebar-sub-headers"></ul></li><li><a href="/vue/vue-router/#路由注册" class="sidebar-link">路由注册</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/vue/vue-router/#vue-use" class="sidebar-link">Vue.use</a></li></ul></li></ul></section></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="vue-router-源码解析"><a href="#vue-router-源码解析" class="header-anchor">#</a> Vue-Router 源码解析</h1> <h2 id="vue-router"><a href="#vue-router" class="header-anchor">#</a> Vue-Router</h2> <p>路由的概念相信大家都不陌生，它的作用就是根据不同的路径映射到不同的视图。我们在用Vue开发实际项目的时候会用到Vue-Router这个官方插件来帮助我们解决路由的问题。Vue-Router的能力十分强大，它支持hash、history、abstract 3种路由方式，提供了 <code>&lt;router-link&gt;</code> 和 <code>&lt;router-view&gt;</code> 2种组件，还提供了简单的路由配置和一系列好用的<strong>API</strong>.</p> <p>我们结合一些具体的示例来讲解</p> <div class="language-html line-numbers-mode"><pre class="language-html"><code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span>app<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span> 
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>h1</span><span class="token punctuation">&gt;</span></span>Hello App!<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>h1</span><span class="token punctuation">&gt;</span></span> 
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">&gt;</span></span>
+    <span class="token comment">&lt;!-- 使⽤ router-link 组件来导航. --&gt;</span> 
+    <span class="token comment">&lt;!-- 通过传⼊ `to` 属性指定链接. --&gt;</span> 
+    <span class="token comment">&lt;!-- &lt;router-link&gt; 默认会被渲染成⼀个 `&lt;a&gt;` 标签 --&gt;</span> 
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>router-link</span> <span class="token attr-name">to</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span>/foo<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>Go to Foo<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>router-link</span><span class="token punctuation">&gt;</span></span> 
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>router-link</span> <span class="token attr-name">to</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span>/bar<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>Go to Bar<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>router-link</span><span class="token punctuation">&gt;</span></span> 
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">&gt;</span></span> 
+  <span class="token comment">&lt;!-- 路由出⼝ --&gt;</span> <span class="token comment">&lt;!-- 路由匹配到的组件将渲染在这⾥ --&gt;</span> 
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>router-view</span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>router-view</span><span class="token punctuation">&gt;</span></span> 
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br></div></div><div class="language-js line-numbers-mode"><pre class="language-js"><code><span class="token keyword">import</span> Vue <span class="token keyword">from</span> <span class="token string">'vue'</span> 
+<span class="token keyword">import</span> VueRouter <span class="token keyword">from</span> <span class="token string">'vue-router'</span>
+Vue<span class="token punctuation">.</span><span class="token function">use</span><span class="token punctuation">(</span>VueRouter<span class="token punctuation">)</span>
+
+<span class="token comment">// 1. 定义（路由）组件。 </span>
+<span class="token comment">// 可以从其他⽂件 import 进来 </span>
+<span class="token keyword">const</span> Foo <span class="token operator">=</span> <span class="token punctuation">{</span> template<span class="token operator">:</span> <span class="token string">'&lt;div&gt;foo&lt;/div&gt;'</span> <span class="token punctuation">}</span> 
+<span class="token keyword">const</span> Bar <span class="token operator">=</span> <span class="token punctuation">{</span> template<span class="token operator">:</span> <span class="token string">'&lt;div&gt;bar&lt;/div&gt;'</span> <span class="token punctuation">}</span> 
+
+<span class="token comment">// 2. 定义路由 // 每个路由应该映射⼀个组件。 其中&quot;component&quot; 可以是 </span>
+<span class="token comment">// 通过 Vue.extend() 创建的组件构造器， </span>
+<span class="token comment">// 或者，只是⼀个组件配置对象。 </span>
+<span class="token comment">// 我们晚点再讨论嵌套路由。 </span>
+<span class="token keyword">const</span> routes <span class="token operator">=</span> <span class="token punctuation">[</span> 
+  <span class="token punctuation">{</span> path<span class="token operator">:</span> <span class="token string">'/foo'</span><span class="token punctuation">,</span> component<span class="token operator">:</span> Foo <span class="token punctuation">}</span><span class="token punctuation">,</span> 
+  <span class="token punctuation">{</span> path<span class="token operator">:</span> <span class="token string">'/bar'</span><span class="token punctuation">,</span> component<span class="token operator">:</span> Bar <span class="token punctuation">}</span> 
+<span class="token punctuation">]</span>
+
+<span class="token comment">// 3. 创建 router 实例，然后传 `routes` 配置 </span>
+<span class="token comment">// 你还可以传别的配置参数, 不过先这么简单着吧。 </span>
+
+<span class="token keyword">const</span> router <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">VueRouter</span><span class="token punctuation">(</span><span class="token punctuation">{</span> 
+  routes <span class="token comment">// （缩写）相当于 routes: routes </span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+
+<span class="token comment">// 4. 创建和挂载根实例。 </span>
+<span class="token comment">// 记得要通过 router 配置参数注⼊路由， </span>
+<span class="token comment">// 从⽽让整个应⽤都有路由功能 </span>
+
+<span class="token keyword">const</span> app <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Vue</span><span class="token punctuation">(</span><span class="token punctuation">{</span> 
+  router 
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">$mount</span><span class="token punctuation">(</span><span class="token string">'#app'</span><span class="token punctuation">)</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br><span class="line-number">29</span><br><span class="line-number">30</span><br><span class="line-number">31</span><br><span class="line-number">32</span><br></div></div><p>这是一个很简单的例子,接下来我们先从 Vue.use(VueRouter) 说起。</p> <h2 id="路由注册"><a href="#路由注册" class="header-anchor">#</a> 路由注册</h2> <p>Vue 从它的设计上就是一个渐进式的JavaScript框架，它本身的核心是解决视图渲染的问题，其他的能力就通过插件的方式来解决。Vue-Router 就是官方维护的路由插件，在介绍它的注册实现之前，我们先来分析一下Vue通用插件的注册原理。</p> <h3 id="vue-use"><a href="#vue-use" class="header-anchor">#</a> Vue.use</h3> <p>Vue提供了Vue.use的全局API来注册这些插件，所以我们先来分析一下它的实现原理，定义在<code>vue/src/core/global-api/use.js</code>中：</p> <div class="language-js line-numbers-mode"><pre class="language-js"><code><span class="token keyword">export</span> <span class="token keyword">function</span> <span class="token function">initUse</span> <span class="token punctuation">(</span><span class="token parameter">Vue<span class="token operator">:</span> GlobalAPI</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> 
+  Vue<span class="token punctuation">.</span><span class="token function-variable function">use</span> <span class="token operator">=</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token parameter">plugin<span class="token operator">:</span> Function <span class="token operator">|</span> Object</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> 
+    <span class="token keyword">const</span> installedPlugins <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>_installedPlugins <span class="token operator">||</span> <span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>_installedPlugins <span class="token operator">=</span> <span class="token punctuation">[</span> <span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">)</span> 
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>installedPlugins<span class="token punctuation">.</span><span class="token function">indexOf</span><span class="token punctuation">(</span>plugin<span class="token punctuation">)</span> <span class="token operator">&gt;</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> 
+      <span class="token keyword">return</span> <span class="token keyword">this</span> 
+    <span class="token punctuation">}</span>
+    <span class="token keyword">const</span> args <span class="token operator">=</span> <span class="token function">toArray</span><span class="token punctuation">(</span>arguments<span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span> 
+
+    args<span class="token punctuation">.</span><span class="token function">unshift</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">)</span> 
+    
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token keyword">typeof</span> plugin<span class="token punctuation">.</span>install <span class="token operator">===</span> <span class="token string">'function'</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> 
+      plugin<span class="token punctuation">.</span><span class="token function">install</span><span class="token punctuation">.</span><span class="token function">apply</span><span class="token punctuation">(</span>plugin<span class="token punctuation">,</span> args<span class="token punctuation">)</span> 
+    <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token keyword">typeof</span> plugin <span class="token operator">===</span> <span class="token string">'function'</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> 
+      <span class="token function">plugin</span><span class="token punctuation">.</span><span class="token function">apply</span><span class="token punctuation">(</span><span class="token keyword">null</span><span class="token punctuation">,</span> args<span class="token punctuation">)</span> 
+    <span class="token punctuation">}</span>
+    installedPlugins<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span>plugin<span class="token punctuation">)</span> 
+    <span class="token keyword">return</span> <span class="token keyword">this</span> 
+  <span class="token punctuation">}</span> 
+<span class="token punctuation">}</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br></div></div><p>Vue.use 接收一个plugin参数，并且维护一个 _installedPlugins 数组，它存储所有注册过的 plugin 接着又会判断 plugin 有没有定义 install 方法，如果有的话则调用该方法，并且该方法执行的第一个参数是Vue；最后把plugin存储到_installedPlugins中。</p> <p>可以看到Vue提供的插件注册机制是非常简单的，每个插件都需要提供一个静态的install方法，当我们执行Vue.use 注册插件的时候，就会执行这个 inistall 方法，并且这个install 方法的第一个参数我们可以拿Vue对象，这样的好处就是作为插件的编写方不需要再额外的去 import Vue了。</p></div> <footer class="page-edit"><!----> <!----></footer> <!----> </main></div><div class="global-ui"></div></div>
+    <script src="/assets/js/app.1961f682.js" defer></script><script src="/assets/js/2.6ae9b001.js" defer></script><script src="/assets/js/88.8f14e44b.js" defer></script>
+  </body>
+</html>
